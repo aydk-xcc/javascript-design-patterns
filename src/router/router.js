@@ -1,11 +1,13 @@
-import { Route } from 'react-router-dom'
+import { Route, Switch } from 'react-router-dom'
 import React from "react";
 import Main from "../views/main";
-import Test from '../views/test';
+import Instruct from '../views/instruct';
+import Decorator from '../views/decorator';
 const RouterView = () => (
-    <div>
+    <Switch>
         <Route exact path="/" component={Main} />
-        <Route path="/test" component={Test} />
-    </div>
+        <Route path="/instruct" component={Instruct} />
+        <Route path="/decorator" component={Decorator} />
+    </Switch>
 );
 export default RouterView;

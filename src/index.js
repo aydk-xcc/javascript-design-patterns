@@ -1,30 +1,19 @@
-// import React from 'react';
-// import ReactDOM from 'react-dom';
-// import './index.css';
-// import App from './App';
-// import * as serviceWorker from './serviceWorker';
-//
-// ReactDOM.render(<App />, document.getElementById('root'));
-//
-// // If you want your app to work offline and load faster, you can change
-// // unregister() to register() below. Note this comes with some pitfalls.
-// // Learn more about service workers: https://bit.ly/CRA-PWA
-// serviceWorker.unregister();
-
 import React from 'react';
 import ReactDOM from 'react-dom';
 import 'antd/dist/antd.css';
 import './index.css';
 import { Layout, Menu, Icon } from 'antd';
 import RouterView from './router/router';
-import PropTypes from 'prop-types';
-import {BrowserRouter as Router,  Link} from "react-router-dom";
-// import Main from "./views/main";
+import {BrowserRouter as Router} from "react-router-dom";
+import { createBrowserHistory } from "history";
 const { Header, Sider, Content } = Layout;
 
+const history = createBrowserHistory({
+    forceRefresh: true        //是否强制刷新
+});
 class SiderDemo extends React.Component {
     state = {
-        collapsed: false,
+        collapsed: false
     };
 
     toggle = () => {
@@ -32,30 +21,27 @@ class SiderDemo extends React.Component {
             collapsed: !this.state.collapsed,
         });
     };
-    static contextTypes = {
-        router: PropTypes.object.isRequired
-    };
     clickMenu(item, key, keyPath, domEvent) {
-        console.log(this.context.router);
-        this.context.router.history.push(key);
+        console.log(history);
+        history.push(item.key);
     }
     render() {
         return (
-            <Router his>
+            <Router history={history}>
                 <Layout style={{height: '100vh'}}>
                     <Sider trigger={null} collapsible collapsed={this.state.collapsed}>
                         <div className="logo" />
                         <Router>
                             <Menu theme="dark" mode="inline" onClick={this.clickMenu.bind(this)} defaultSelectedKeys={['1']}>
-                                <Menu.Item key="1">
+                                <Menu.Item key="/">
                                     <Icon type="user" />
-                                    <span><Link to='/test'>设计模式</Link></span>
+                                    <span>首页</span>
                                 </Menu.Item>
-                                <Menu.Item key="/test">
+                                <Menu.Item key="/decorator">
                                     <Icon type="video-camera" />
                                     <span>装饰者模式</span>
                                 </Menu.Item>
-                                <Menu.Item key="/main">
+                                <Menu.Item key="/instruct">
                                     <Icon type="upload" />
                                     <span>指令模式</span>
                                 </Menu.Item>
