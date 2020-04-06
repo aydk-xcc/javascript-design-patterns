@@ -45,6 +45,10 @@ class SiderDemo extends React.Component {
                                     <Icon type="upload" />
                                     <span>指令模式</span>
                                 </Menu.Item>
+                                <Menu.Item key="/game">
+                                    <Icon type="upload" />
+                                    <span>Game</span>
+                                </Menu.Item>
                             </Menu>
                         </Router>
                     </Sider>
